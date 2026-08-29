@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#0b1026">
+  <meta name="description" content="LP FACTORY — Construye el modelo. Microjuego educativo sobre los elementos básicos del modelo normativo: variables de decisión, restricciones y función objetivo.">
+  <title>LP FACTORY · Construye el modelo</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800;900&family=JetBrains+Mono:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app">
+    <div class="bgfx" aria-hidden="true">
+      <div class="blob blob-a"></div>
+      <div class="blob blob-b"></div>
+      <div class="pipe pipe-a"></div>
+      <div class="pipe pipe-b"></div>
+      <span class="gear">⚙️</span>
+      <span class="gear gear-b">⚙️</span>
+      <span class="warnlight"></span>
+    </div>
+
+    <main class="shell">
+
+      <!-- ============ PORTADA ============ -->
+      <section id="screen-title" class="screen screen-title active" aria-labelledby="gameTitle">
+        <header class="title-head">
+          <span class="eyebrow">GIMNASIO 2 · Optimización I</span>
+          <h1 id="gameTitle" class="game-title">
+            LP <span class="title-accent">FACTORY</span>
+          </h1>
+          <p class="subtitle">Construye el modelo</p>
+        </header>
+
+        <div class="legend" role="list" aria-label="Las tres máquinas de la fábrica">
+          <div class="legend-chip" role="listitem" data-cat="variables">
+            <span class="chip-icon" aria-hidden="true"></span>
+            <span class="chip-text"><strong>Variables de decisión</strong><small>Cantidades desconocidas</small></span>
+          </div>
+          <div class="legend-chip" role="listitem" data-cat="restriccion">
+            <span class="chip-icon" aria-hidden="true"></span>
+            <span class="chip-text"><strong>Restricción</strong><small>Limitan a valores factibles</small></span>
+          </div>
+          <div class="legend-chip" role="listitem" data-cat="objetivo">
+            <span class="chip-icon" aria-hidden="true"></span>
+            <span class="chip-text"><strong>Función objetivo</strong><small>Define la meta del modelo</small></span>
+          </div>
+        </div>
+
+        <p class="howto">Ensambla el modelo: envía cada pieza a la máquina correcta.</p>
+
+        <button id="btnPlay" class="btn btn-primary" type="button">▶ INICIAR TURNO</button>
+        <p class="hint-keys" aria-hidden="true">También con teclado: 1 · 2 · 3</p>
+        <p class="source-note">Basado en el Gimnasio 2 — Elementos básicos del modelo normativo.</p>
+      </section>
+
+      <!-- ============ GAMEPLAY ============ -->
+      <section id="screen-game" class="screen screen-game" aria-hidden="true" aria-label="Juego">
+        <div class="hud">
+          <div class="hud-pill" id="timePill" aria-label="Tiempo transcurrido">
+            <span class="hud-icon hud-clock" aria-hidden="true"></span>
+            <span id="timeValue">0 s</span>
+          </div>
+          <div class="hud-pill hud-score" aria-label="Aciertos">
+            <span class="hud-icon hud-check" aria-hidden="true"></span>
+            <span id="scoreValue">0</span><span class="score-max" id="scoreMax">/8</span>
+          </div>
+          <div class="hud-pill hud-points" aria-label="Puntos">
+            <span id="pointsValue">0</span><span class="pts-unit">pts</span>
+          </div>
+        </div>
+
+        <div class="dots" id="dots" aria-hidden="true"></div>
+
+        <div class="plant">
+          <div class="plant-label" id="pieceCounter">PIEZA 1 / 8</div>
+
+          <div class="belt-zone">
+            <div class="belt-track" aria-hidden="true">
+              <span class="roller roller-a"></span>
+              <span class="roller roller-b"></span>
+            </div>
+            <div class="stage" id="stage">
+              <article class="card" id="card">
+                <span class="card-tag" aria-hidden="true">PIEZA</span>
+                <div class="card-display" id="cardDisplay"></div>
+              </article>
+            </div>
+          </div>
+        </div>
+
+        <div class="machines" id="machines" role="group" aria-label="Máquinas receptoras: envía la pieza a la correcta"></div>
+
+        <div id="toast" class="toast" role="status" aria-live="polite"></div>
+        <p class="sr-status" id="srStatus" role="status" aria-live="assertive"></p>
+      </section>
+
+      <!-- ============ RESULTADO ============ -->
+      <section id="screen-result" class="screen screen-result" aria-hidden="true" aria-labelledby="resultTitle">
+        <div class="result-emoji" id="resultEmoji" aria-hidden="true"></div>
+        <h2 id="resultTitle" class="result-title">¡Turno completado!</h2>
+
+        <div class="result-stats" role="status" aria-label="Resultados de la partida">
+          <div class="stat">
+            <span class="stat-value" id="resultScore">8/8</span>
+            <span class="stat-label">Aciertos</span>
+          </div>
+          <div class="stat">
+            <span class="stat-value" id="resultTime">52 s</span>
+            <span class="stat-label">Tiempo</span>
+          </div>
+          <div class="stat">
+            <span class="stat-value" id="resultPoints">1200</span>
+            <span class="stat-label">Puntos</span>
+          </div>
+          <div class="stat">
+            <span class="stat-value" id="resultCombo">×4</span>
+            <span class="stat-label">Mejor combo</span>
+          </div>
+        </div>
+
+        <div class="recuerda" aria-label="Recuerda los tres elementos">
+          <div class="recuerda-row" data-cat="variables"><span class="dot" aria-hidden="true"></span><p><strong>Variables de decisión:</strong> cantidades desconocidas que deben encontrarse.</p></div>
+          <div class="recuerda-row" data-cat="restriccion"><span class="dot" aria-hidden="true"></span><p><strong>Restricciones:</strong> limitan las variables a valores permisibles (factibles).</p></div>
+          <div class="recuerda-row" data-cat="objetivo"><span class="dot" aria-hidden="true"></span><p><strong>Función objetivo:</strong> define la meta del modelo: maximizar o minimizar.</p></div>
+        </div>
+
+        <button id="btnAgain" class="btn btn-primary" type="button">↻ OTRA PARTIDA</button>
+        <button id="btnHome" class="btn btn-ghost" type="button">Volver al inicio</button>
+      </section>
+
+    </main>
+
+    <button id="btnMute" class="btn-mute" type="button" aria-pressed="false" aria-label="Silenciar sonido"></button>
+  </div>
+
+  <script src="data.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
