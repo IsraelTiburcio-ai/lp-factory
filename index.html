@@ -123,6 +123,10 @@
           </div>
         </div>
 
+        <button id="btnAnswers" class="btn btn-review" type="button" aria-expanded="false" aria-controls="answerPanel">
+          ▣ VER RESPUESTAS
+        </button>
+
         <div class="recuerda" aria-label="Recuerda los tres elementos">
           <div class="recuerda-row" data-cat="variables"><span class="dot" aria-hidden="true"></span><p><strong>Variables de decisión:</strong> cantidades desconocidas que deben encontrarse.</p></div>
           <div class="recuerda-row" data-cat="restriccion"><span class="dot" aria-hidden="true"></span><p><strong>Restricciones:</strong> limitan las variables a valores permisibles (factibles).</p></div>
@@ -131,6 +135,18 @@
 
         <button id="btnAgain" class="btn btn-primary" type="button">↻ OTRA PARTIDA</button>
         <button id="btnHome" class="btn btn-ghost" type="button">Volver al inicio</button>
+
+        <div id="answerPanel" class="answer-panel" role="dialog" aria-modal="true" aria-labelledby="answersTitle" hidden>
+          <div class="answer-panel-head">
+            <div>
+              <span class="eyebrow">REPASO DEL TURNO</span>
+              <h3 id="answersTitle">Clave de respuestas</h3>
+            </div>
+            <button id="btnCloseAnswers" class="panel-close" type="button" aria-label="Cerrar respuestas">×</button>
+          </div>
+          <p class="answer-panel-intro">Aquí puedes revisar cada pieza, la máquina correcta y el motivo.</p>
+          <ol id="answerList" class="answer-list"></ol>
+        </div>
       </section>
 
     </main>

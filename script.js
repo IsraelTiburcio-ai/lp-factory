@@ -9,6 +9,7 @@
   const $ = (sel) => document.querySelector(sel);
 
   const els = {
+    app: $('.app'),
     screens: {
       title: $('#screen-title'),
       game: $('#screen-game'),
@@ -35,7 +36,11 @@
     resultScore: $('#resultScore'),
     resultTime: $('#resultTime'),
     resultPoints: $('#resultPoints'),
-    resultCombo: $('#resultCombo')
+    resultCombo: $('#resultCombo'),
+    btnAnswers: $('#btnAnswers'),
+    btnCloseAnswers: $('#btnCloseAnswers'),
+    answerPanel: $('#answerPanel'),
+    answerList: $('#answerList')
   };
 
   const CFG = window.LP_FACTORY;
@@ -124,7 +129,8 @@
     elapsedMs: 0,
     lastTick: 0,
     timerId: null,
-    session: 0
+    session: 0,
+    answers: []
   };
 
   /* ================= UTILIDADES ================= */
@@ -237,6 +243,65 @@
     els.pointsValue.textContent = S.points;
   }
 
+  function setAnswersOpen(open, focusButton = false) {
+    els.answerPanel.hidden = !open;
+    els.btnAnswers.setAttribute('aria-expanded', String(open));
+    els.app.classList.toggle('answers-open', open);
+    if (focusButton) {
+      (open ? els.btnCloseAnswers : els.btnAnswers).focus();
+    }
+  }
+
+  function renderAnswerKey() {
+    els.answerList.innerHTML = '';
+
+    S.answers.forEach((answer, index) => {
+      const item = answer.item;
+      const correctCat = catById[item.cat];
+      const selectedCat = catById[answer.selected];
+      const row = document.createElement('li');
+      row.className = `answer-row ${answer.correct ? 'is-correct' : 'is-wrong'}`;
+      row.style.setProperty('--answer-color', correctCat.color);
+
+      const number = document.createElement('span');
+      number.className = 'answer-number';
+      number.textContent = String(index + 1).padStart(2, '0');
+
+      const body = document.createElement('div');
+      body.className = 'answer-body';
+
+      const top = document.createElement('div');
+      top.className = 'answer-top';
+
+      const status = document.createElement('span');
+      status.className = 'answer-status';
+      status.textContent = answer.correct ? '✓ Correcta' : '✕ Incorrecta';
+
+      const category = document.createElement('span');
+      category.className = 'answer-category';
+      category.textContent = correctCat.label;
+
+      const value = document.createElement('p');
+      value.className = `answer-value ${item.display.type}`;
+      value.textContent = item.display.value;
+
+      const route = document.createElement('p');
+      route.className = 'answer-route';
+      route.textContent = answer.correct
+        ? `Respuesta: ${correctCat.label}`
+        : `Tu elección: ${selectedCat.label} · Correcta: ${correctCat.label}`;
+
+      const why = document.createElement('p');
+      why.className = 'answer-why';
+      why.textContent = item.why;
+
+      top.append(status, category);
+      body.append(top, value, route, why);
+      row.append(number, body);
+      els.answerList.appendChild(row);
+    });
+  }
+
   /* ================= EFECTOS ================= */
 
   function sparks(machineEl, color, n = 9) {
@@ -299,6 +364,7 @@
 
     const ok = catId === item.cat;
     const dot = els.dots.querySelectorAll('span')[S.idx];
+    S.answers.push({ item, selected: catId, correct: ok });
 
     if (ok) {
       S.combo += 1;
@@ -349,8 +415,11 @@
     S.points = 0;
     S.combo = 0;
     S.bestCombo = 0;
+    S.answers = [];
     S.busy = false;
     S.playing = true;
+
+    setAnswersOpen(false);
 
     els.timeValue.textContent = '0 s';
     updateHud();
@@ -380,6 +449,7 @@
     els.resultTime.textContent = `${secs} s`;
     els.resultPoints.textContent = S.points;
     els.resultCombo.textContent = `×${Math.max(S.bestCombo, 1)}`;
+    renderAnswerKey();
 
     AudioFX.result(perfect);
     showScreen('result');
@@ -395,6 +465,7 @@
     clearInterval(S.timerId);
     S.timerId = null;
     els.toast.classList.remove('show');
+    setAnswersOpen(false);
     els.card.classList.remove('enter', 'fly');
     els.card.style.transform = '';
     els.card.style.opacity = '';
@@ -415,6 +486,12 @@
     els.btnPlay.addEventListener('click', startGame);
     els.btnAgain.addEventListener('click', startGame);
     els.btnHome.addEventListener('click', goHome);
+    els.btnAnswers.addEventListener('click', () => {
+      setAnswersOpen(true, true);
+    });
+    els.btnCloseAnswers.addEventListener('click', () => {
+      setAnswersOpen(false, true);
+    });
 
     els.btnMute.addEventListener('click', () => {
       const muted = AudioFX.toggle();
@@ -425,6 +502,12 @@
 
     document.addEventListener('keydown', (e) => {
       if (e.repeat) return;
+      if (!els.answerPanel.hidden) {
+        if (e.key === 'Escape') {
+          setAnswersOpen(false, true);
+        }
+        return;
+      }
       if (els.screens.title.classList.contains('active')) {
         if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); startGame(); }
         return;

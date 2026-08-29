@@ -36,6 +36,8 @@ problemas prototipo (demanda mínima, Cola A / Cola ByK, Muebles Baba).
    recuerda a dónde iba la pieza y por qué.
 5. Son **8 clasificaciones por partida**. Al final: resultado con aciertos,
    tiempo, puntos, mejor combo y un repaso de los tres elementos.
+6. Pulsa **VER RESPUESTAS** para revisar las 8 piezas, tu elección, la categoría
+   correcta y la explicación de cada una.
 
 Sin tutorial, sin niveles, sin campañas. Entrar → entender → jugar → repetir.
 
@@ -43,6 +45,10 @@ Sin tutorial, sin niveles, sin campañas. Entrar → entender → jugar → repe
 
 - **Mobile-first** (referencia 390×844), botones grandes y tap-to-send.
 - Fábrica con cinta transportadora, luces, chispas y efectos discretos.
+- Dificultad ligera: las pistas descriptivas de las máquinas se reservan para la
+  portada y la revisión final; durante la partida queda el nombre de cada máquina.
+- La clave de respuestas aparece al terminar para favorecer la retroalimentación
+  sin convertir la partida en un menú o una campaña.
 - Sonido sintetizado con WebAudio (tap, acierto, error, resultado) con botón
   de silencio persistente.
 - Accesibilidad: contraste alto, labels ARIA, anuncios por lector de pantalla,
