@@ -153,13 +153,15 @@
     });
   }
 
-  /* ================= RONDA (4+3+3 balanceado) ================= */
+  /* ================= RONDA (5+5+5 balanceado) ================= */
 
   function buildRound() {
     const catOrder = shuffle(CATS.map((c) => c.id));
+    const baseTake = Math.floor(CFG.rounds / CATS.length);
+    const remainder = CFG.rounds - baseTake * CATS.length;
     const picks = [];
     catOrder.forEach((catId, i) => {
-      const take = i === 0 ? 4 : 3;
+      const take = baseTake + (i < remainder ? 1 : 0);
       const pool = CFG.items.filter((it) => it.cat === catId);
       picks.push(...shuffle(pool).slice(0, take));
     });
