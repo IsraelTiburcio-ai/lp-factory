@@ -1,4 +1,4 @@
-# LP FACTORY — Construye el modelo
+# LP FACTORY — Construye el modelo normativo
 
 **Materia:** Optimización I
 **Unidad:** Gimnasio 2 — Modelos de Programación Lineal
