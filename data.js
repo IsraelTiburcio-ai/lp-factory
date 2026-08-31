@@ -2,7 +2,7 @@
    LP FACTORY · data.js
    Fuente académica: Gimnasio 2 — Modelos de Programación Lineal
    Sección: "Elementos Básicos del Modelo Normativo" (pág. 6)
-   Ejemplos: Baya Prototipo (fábrica de bolsas) y ejercicios 3-5.
+   Banco de respuestas transcrito del juego de la maestra.
    Terminología de la maestra, sin alteraciones.
    ============================================================ */
 
@@ -43,118 +43,142 @@ window.LP_FACTORY = {
   ],
 
   items: [
-    /* ---------- FUNCIÓN OBJETIVO · define la meta (pág. 6) ---------- */
+    /* ---------- VARIABLES DE DECISIÓN ---------- */
     {
-      id: 'fo-baya',
-      display: { type: 'formula', value: 'max z = 50x\u2081 + 100x\u2082' },
-      cat: 'objetivo',
-      why: 'La meta del modelo: maximizar la utilidad de las bolsas (Baya Prototipo).'
-    },
-    {
-      id: 'fo-ganancias',
-      display: { type: 'text', value: 'Maximizar las ganancias de la semana' },
-      cat: 'objetivo',
-      why: 'Lo que se desea lograr define la función objetivo.'
-    },
-    {
-      id: 'fo-utilidad-max',
-      display: { type: 'text', value: 'Obtener la mayor utilidad posible' },
-      cat: 'objetivo',
-      why: 'Buscar el máximo es la meta: función objetivo.'
-    },
-    {
-      id: 'fo-lujo',
-      display: { type: 'formula', value: 'max z = 5x\u2081 + 2x\u2082' },
-      cat: 'objetivo',
-      why: 'Utilidad de $5 por bolsa de lujo y $2 por bolsa normal (pág. 6).'
-    },
-    {
-      id: 'fo-general',
-      display: { type: 'formula', value: 'max z = c\u2081x\u2081 + c\u2082x\u2082' },
-      cat: 'objetivo',
-      why: 'Forma general: la meta como función de las variables de decisión.'
-    },
-    {
-      id: 'fo-costos',
-      display: { type: 'text', value: 'Minimizar el costo total de la dieta' },
-      cat: 'objetivo',
-      why: 'También es una meta: minimizar en lugar de maximizar.'
-    },
-
-    /* ---------- VARIABLES DE DECISIÓN · cantidades desconocidas (pág. 6) ---------- */
-    {
-      id: 'var-b1',
-      display: { type: 'formula', value: 'x\u2081 = bolsas estándar' },
+      id: 'var-solucionan',
+      display: { type: 'text', value: 'Se solucionan e interpretan.' },
       cat: 'variables',
-      why: 'Cantidad desconocida que el modelo debe encontrar (Baya Prototipo).'
+      why: 'Respuesta de referencia: VARIABLES DE DECISIÓN.'
     },
     {
-      id: 'var-b2',
-      display: { type: 'formula', value: 'x\u2082 = bolsas de lujo' },
+      id: 'var-desconocidas',
+      display: { type: 'text', value: 'Son cantidades desconocidas que deben encontrarse.' },
       cat: 'variables',
-      why: 'Otra cantidad desconocida por determinar.'
+      why: 'Respuesta de referencia: VARIABLES DE DECISIÓN.'
     },
     {
-      id: 'var-latas',
-      display: { type: 'text', value: '¿Cuántas latas de Cola A y de ByK?' },
+      id: 'var-interpretacion',
+      display: { type: 'text', value: 'Se definen para una mejor interpretación.' },
       cat: 'variables',
-      why: 'Las cantidades a encontrar son las variables de decisión (ejercicio 4).'
+      why: 'Respuesta de referencia: VARIABLES DE DECISIÓN.'
     },
     {
-      id: 'var-def',
-      display: { type: 'text', value: 'Cantidades desconocidas que deben encontrarse' },
+      id: 'var-tipo-i',
+      display: { type: 'text', value: 'xᵢ: número de bolsas de tipo i a producir.' },
       cat: 'variables',
-      why: 'Es la definición de las variables de decisión.'
+      why: 'Respuesta de referencia: VARIABLES DE DECISIÓN.'
     },
     {
       id: 'var-notacion',
-      display: { type: 'formula', value: 'x\u2081, x\u2082, x\u2081\u2081, y' },
+      display: { type: 'formula', value: 'x₁, x₂, x₁₁, x₁₂, y, r...' },
       cat: 'variables',
-      why: 'Notación general de las variables de decisión (pág. 6).'
-    },
-    {
-      id: 'var-mesas',
-      display: { type: 'text', value: '¿Cuántas mesas y sillas armar?' },
-      cat: 'variables',
-      why: 'Decidir las cantidades a producir: variables (Muebles Baba).'
+      why: 'Respuesta de referencia: VARIABLES DE DECISIÓN.'
     },
 
-    /* ---------- RESTRICCIÓN · limitan a valores factibles (pág. 6) ---------- */
+    /* ---------- RESTRICCIONES ---------- */
     {
-      id: 'res-cortado',
-      display: { type: 'formula', value: '7x\u2081 + 2x\u2082 \u2264 28' },
+      id: 'res-demanda-diez',
+      display: { type: 'text', value: 'Se tiene una demanda de 10 bolsas.' },
       cat: 'restriccion',
-      why: 'Limita las horas del departamento de cortado (Baya Prototipo).'
+      why: 'Respuesta de referencia: RESTRICCIÓN.'
     },
     {
-      id: 'res-empaque',
-      display: { type: 'formula', value: '2x\u2081 + 12x\u2082 \u2264 24' },
+      id: 'res-materia-diez',
+      display: { type: 'text', value: 'Se tiene disponible 10 metros de materia prima.' },
       cat: 'restriccion',
-      why: 'Limita las horas del departamento de empaquetado (Baya Prototipo).'
+      why: 'Respuesta de referencia: RESTRICCIÓN.'
     },
     {
-      id: 'res-kg',
-      display: { type: 'text', value: 'Solo se dispone de 40 kg de materia prima' },
+      id: 'res-limitantes',
+      display: { type: 'text', value: 'Limitantes que ocurren en el problema.' },
       cat: 'restriccion',
-      why: 'Un recurso limitado es una restricción (pág. 6).'
+      why: 'Respuesta de referencia: RESTRICCIÓN.'
     },
     {
-      id: 'res-neg',
-      display: { type: 'text', value: 'No se pueden producir bolsas negativas' },
+      id: 'res-oferta-cinco',
+      display: { type: 'text', value: 'Se tiene que ofertar 5 bolsas.' },
       cat: 'restriccion',
-      why: 'Condición de no negatividad: restricción implícita (pág. 6).'
+      why: 'Respuesta de referencia: RESTRICCIÓN.'
     },
     {
-      id: 'res-demanda',
-      display: { type: 'text', value: 'Demanda mínima: 300 bombas normales' },
+      id: 'res-no-negativas',
+      display: { type: 'text', value: 'No se pueden producir bolsas negativas.' },
       cat: 'restriccion',
-      why: 'Condición que limita la producción (ejercicio 3).'
+      why: 'Respuesta de referencia: RESTRICCIÓN.'
+    },
+    {
+      id: 'res-desigualdades',
+      display: { type: 'text', value: 'Se pueden usar desigualdades.' },
+      cat: 'restriccion',
+      why: 'Respuesta de referencia: RESTRICCIÓN.'
+    },
+    {
+      id: 'res-permisibles',
+      display: { type: 'text', value: 'Limiten a las variables de decisión a valores permisibles (factibles).' },
+      cat: 'restriccion',
+      why: 'Respuesta de referencia: RESTRICCIÓN.'
     },
     {
       id: 'res-general',
-      display: { type: 'formula', value: 'a\u2081x\u2081 + a\u2082x\u2082 \u2264 b' },
+      display: { type: 'formula', value: 'a₁x₁ + a₂x₂ ≤ b' },
       cat: 'restriccion',
-      why: 'Forma general de una restricción (pág. 6).'
+      why: 'Respuesta de referencia: RESTRICCIÓN.'
+    },
+    {
+      id: 'res-horas',
+      display: { type: 'text', value: 'Se dispone de 45 horas disponibles en cada departamento.' },
+      cat: 'restriccion',
+      why: 'Respuesta de referencia: RESTRICCIÓN.'
+    },
+    {
+      id: 'res-enteros',
+      display: { type: 'text', value: 'Las bolsas deben ser valores enteros.' },
+      cat: 'restriccion',
+      why: 'Respuesta de referencia: RESTRICCIÓN.'
+    },
+
+    /* ---------- FUNCIÓN OBJETIVO ---------- */
+    {
+      id: 'fo-minimizar',
+      display: { type: 'text', value: 'Se necesita minimizar los costos de producción.' },
+      cat: 'objetivo',
+      why: 'Respuesta de referencia: FUNCIÓN OBJETIVO.'
+    },
+    {
+      id: 'fo-maximizar',
+      display: { type: 'text', value: 'Se busca maximizar las ganancias de las ventas.' },
+      cat: 'objetivo',
+      why: 'Respuesta de referencia: FUNCIÓN OBJETIVO.'
+    },
+    {
+      id: 'fo-efectividad',
+      display: { type: 'text', value: 'Define la efectividad del modelo.' },
+      cat: 'objetivo',
+      why: 'Respuesta de referencia: FUNCIÓN OBJETIVO.'
+    },
+    {
+      id: 'fo-general',
+      display: { type: 'formula', value: 'max z = c₁x₁ + c₂x₂' },
+      cat: 'objetivo',
+      why: 'Respuesta de referencia: FUNCIÓN OBJETIVO.'
+    },
+    {
+      id: 'fo-variable-z',
+      display: { type: 'text', value: 'Generalmente se usa la variable z.' },
+      cat: 'objetivo',
+      why: 'Respuesta de referencia: FUNCIÓN OBJETIVO.'
+    },
+    {
+      id: 'fo-en-funcion',
+      display: { type: 'text', value: 'Necesariamente debe estar en función de las variables de decisión.' },
+      cat: 'objetivo',
+      why: 'Respuesta de referencia: FUNCIÓN OBJETIVO.'
+    },
+    {
+      id: 'fo-igualdad',
+      display: { type: 'text', value: 'Se usa necesariamente una igualdad.' },
+      cat: 'objetivo',
+      why: 'Respuesta de referencia: FUNCIÓN OBJETIVO.'
     }
   ]
 };

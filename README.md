@@ -20,11 +20,10 @@ Los **tres elementos básicos del modelo normativo**, con la terminología del m
 | 🚧 **Restricción** | limitan las variables a valores permisibles (factibles) |
 | 🎯 **Función objetivo** | define la meta del modelo: maximizar o minimizar |
 
-Las 18 piezas del juego provienen del Gimnasio 2: la **Baya Prototipo** (fábrica
-de bolsas estándar y de lujo: `max z = 50x₁ + 100x₂`, `7x₁ + 2x₂ ≤ 28`,
-`2x₁ + 12x₂ ≤ 24`), los ejemplos de la sección de elementos básicos
-("solo se dispone de 40 kg", "no se pueden producir bolsas negativas") y
-problemas prototipo (demanda mínima, Cola A / Cola ByK, Muebles Baba).
+El banco contiene **22 tarjetas transcritas del juego de la maestra**: 5 de
+variables de decisión, 10 de restricciones y 7 de función objetivo. Cada
+partida selecciona aleatoriamente 10 tarjetas de este banco y conserva la
+clasificación de referencia.
 
 ## Cómo se juega
 
@@ -65,6 +64,6 @@ Sin tutorial, sin niveles, sin campañas. Entrar → entender → jugar → repe
 index.html    # estructura de pantallas (portada, juego, resultado)
 styles.css    # diseño de la fábrica (mobile-first)
 script.js     # lógica del juego, efectos y audio
-data.js       # categorías y 18 piezas del modelo (fuente: Gimnasio 2)
+data.js       # categorías y 22 respuestas del juego de referencia
 assets/       # favicon
 ```
