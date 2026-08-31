@@ -153,13 +153,13 @@
     });
   }
 
-  /* ================= RONDA (3+3+2 balanceado) ================= */
+  /* ================= RONDA (4+3+3 balanceado) ================= */
 
   function buildRound() {
     const catOrder = shuffle(CATS.map((c) => c.id));
     const picks = [];
     catOrder.forEach((catId, i) => {
-      const take = i < 2 ? 3 : 2;
+      const take = i === 0 ? 4 : 3;
       const pool = CFG.items.filter((it) => it.cat === catId);
       picks.push(...shuffle(pool).slice(0, take));
     });
@@ -218,7 +218,7 @@
     const d = item.display;
     els.cardDisplay.textContent = d.value;
     els.cardDisplay.className = `card-display ${d.type}`;
-    els.pieceCounter.textContent = `PIEZA ${S.idx + 1} / ${CFG.rounds}`;
+    els.pieceCounter.textContent = `PREGUNTA ${S.idx + 1} / ${CFG.rounds}`;
 
     els.dots.querySelectorAll('span').forEach((dot, i) => {
       dot.className = i === S.idx ? 'current' : '';

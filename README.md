@@ -34,9 +34,9 @@ problemas prototipo (demanda mínima, Cola A / Cola ByK, Muebles Baba).
    **FUNCIÓN OBJETIVO** (o teclas **1 · 2 · 3**).
 4. Correcto: chispas, luz verde y puntos con combo. Incorrecto: la máquina te
    recuerda a dónde iba la pieza y por qué.
-5. Son **8 clasificaciones por partida**. Al final: resultado con aciertos,
+5. Son **10 preguntas por partida**. Al final: resultado con aciertos,
    tiempo, puntos, mejor combo y un repaso de los tres elementos.
-6. Pulsa **VER RESPUESTAS** para revisar las 8 piezas, tu elección, la categoría
+6. Pulsa **VER RESPUESTAS** para revisar las 10 piezas, tu elección, la categoría
    correcta y la explicación de cada una.
 
 Sin tutorial, sin niveles, sin campañas. Entrar → entender → jugar → repetir.
