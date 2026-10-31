@@ -132,6 +132,7 @@
     session: 0,
     answers: []
   };
+  const resultsBridge = window.OptiLabResults ? window.OptiLabResults.create('lp-factory') : { start() {}, complete() {}, cancel() {} };
 
   /* ================= UTILIDADES ================= */
 
@@ -409,6 +410,7 @@
   }
 
   function startGame() {
+    resultsBridge.start();
     AudioFX.unlock();
     S.session += 1;
     S.order = buildRound();
@@ -456,11 +458,13 @@
     AudioFX.result(perfect);
     showScreen('result');
     say(`Turno terminado. ${S.score} de ${CFG.rounds} correctas. ${S.points} puntos en ${secs} segundos.`);
+    resultsBridge.complete({ reason: 'completed', correct: S.score, total: CFG.rounds, attempts: S.answers.length, errors: S.answers.filter(a => !a.correct).length, durationMs: Math.max(0, Math.round(S.elapsedMs)), score: S.points });
   }
 
   /* ================= EVENTOS ================= */
 
   function goHome() {
+    resultsBridge.cancel();
     S.session += 1;
     S.playing = false;
     S.busy = false;
